@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BodyCraft - Entrenamiento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>BodyCraft</h1>
+        <h1>Tu gestor de entrenamiento personalizado</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="preentrega1_index.html">Inicio</a></li>
+            <li><a href="preentrega1_entrenamientos.html">Entrenamientos</a></li>
+            <li><a href="preentrega1_historial.html">Historial</a></li>
+            <li><a href="preentrega1_editor.html">Editor</a></li>
+            <li><a href="preentrega1_configuser.html">Configuración</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Entrenamientos Disponibles</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título de la Rutina</th>
+                        <th>Parte del Cuerpo</th>
+                        <th>Ejercicio</th>
+                        <th>Sets</th>
+                        <th>Repeticiones o Fallo</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaEntrenamientos">
+                    <!-- Aquí se agregarán dinámicamente las filas de la tabla -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 www.bodycraft.com. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Función para cargar las rutinas desde localStorage y agregarlas a la tabla
+        function cargarRutinas() {
+            var rutinasGuardadas = JSON.parse(localStorage.getItem('rutinas')) || [];
+
+            // Iterar sobre las rutinas y agregarlas a la tabla
+            rutinasGuardadas.forEach(function (rutina) {
+                agregarFilaTabla('Rutina Personalizada', rutina.parteCuerpo, rutina.ejercicio, rutina.sets, rutina.repeticiones);
+            });
+        }
+
+        // Función para agregar filas a la tabla
+        function agregarFilaTabla(tituloRutina, parteCuerpo, ejercicio, sets, repeticiones) {
+            var tabla = document.getElementById('tablaEntrenamientos');
+            var fila = tabla.insertRow();
+
+            var celdaTitulo = fila.insertCell(0);
+            celdaTitulo.textContent = tituloRutina;
+
+            var celdaParteCuerpo = fila.insertCell(1);
+            celdaParteCuerpo.textContent = parteCuerpo;
+
+            var celdaEjercicio = fila.insertCell(2);
+            celdaEjercicio.textContent = ejercicio;
+
+            var celdaSets = fila.insertCell(3);
+            celdaSets.textContent = sets;
+
+            var celdaRepeticiones = fila.insertCell(4);
+            celdaRepeticiones.textContent = repeticiones;
+        }
+
+        // Llamar a la función al cargar la página
+        cargarRutinas();
+    </script>
+</body>
+</html>

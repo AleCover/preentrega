@@ -1,0 +1,102 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 1em;
+}
+
+nav {
+    background-color: #3498db;
+    padding: 0.5em;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex; /* Usar Flexbox */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+
+nav li {
+    margin-right: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ecf0f1;
+    padding: 5px 10px;
+    border: 1px solid #2980b9;
+    border-radius: 5px;
+    background-color: #2980b9;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #2c3e50;
+}
+
+main {
+    padding: 1em;
+}
+
+section {
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: grid; /* Usar Grid */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Columnas responsives */
+    gap: 20px; /* Espaciado entre las celdas del grid */
+}
+
+h1 {
+    color: #27ae60; /* Verde esmeralda */
+}
+
+h2 {
+    color: #f39c12; /* Naranja */
+}
+
+h3 {
+    color: #3498db; /* Azul claro */
+}
+
+/* Estilos para los botones de rutina */
+section p {
+    margin: 0;
+    padding: 10px;
+    background-color: #3498db;
+    color: #ecf0f1;
+    border: 1px solid #2980b9;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+section p:hover {
+    background-color: #2c3e50;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 1em;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+    }
+}

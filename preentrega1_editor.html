@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BodyCraft - Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>BodyCraft</h1>
+        <h1>Tu gestor de entrenamiento personalizado</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="preentrega1_index.html">Inicio</a></li>
+            <li><a href="preentrega1_entrenamientos.html">Entrenamientos</a></li>
+            <li><a href="preentrega1_historial.html">Historial</a></li>
+            <li><a href="preentrega1_editor.html">Editor</a></li>
+            <li><a href="preentrega1_configuser.html">Configuración</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Editor de Rutinas</h2>
+            <p>Selecciona y personaliza tus rutinas de entrenamiento.</p>
+
+            <form id="rutinaForm" action="#" method="post">
+                <label for="parteCuerpo">Selecciona una parte del cuerpo:</label>
+                <select id="parteCuerpo" name="parteCuerpo">
+                    <option value="piernas">Piernas</option>
+                    <option value="brazos">Brazos</option>
+                    <option value="espalda">Espalda</option>
+                    <option value="pecho">Pecho</option>
+                    <option value="abdominales">Abdominales</option>
+                </select>
+
+                <label for="ejercicio">Ejercicio:</label>
+                <input type="text" id="ejercicio" name="ejercicio">
+
+                <label for="sets">Sets:</label>
+                <input type="number" id="sets" name="sets" min="1" value="1">
+
+                <label for="repeticiones">Repeticiones o Fallo:</label>
+                <input type="text" id="repeticiones" name="repeticiones">
+
+                <button type="button" onclick="agregarRutina()">Agregar Rutina</button>
+
+                <!-- Nuevo botón para guardar la rutina -->
+                <button type="submit" onclick="guardarRutina()">Guardar Rutina</button>
+            </form>
+
+            <div id="rutinasGuardadas">
+                <!-- Aquí se mostrarán las rutinas guardadas -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 www.bodycraft.com. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Agregamos el enlace a la página de configuración de usuario -->
+    <a href="preentrega1_configuser.html">Configuración de Usuario</a>
+
+    <script>
+        // Función para agregar rutina
+        function agregarRutina() {
+            var parteCuerpo = document.getElementById('parteCuerpo').value;
+            var ejercicio = document.getElementById('ejercicio').value;
+            var sets = document.getElementById('sets').value;
+            var repeticiones = document.getElementById('repeticiones').value;
+
+            var nuevaRutina = document.createElement('div');
+            nuevaRutina.innerHTML = '<strong>' + parteCuerpo + '</strong><br>' +
+                'Ejercicio: ' + ejercicio + '<br>' +
+                'Sets: ' + sets + '<br>' +
+                'Repeticiones o Fallo: ' + repeticiones + '<br>' +
+                '<button onclick="eliminarRutina(this)">Eliminar Ejercicio</button>';
+
+            document.getElementById('rutinasGuardadas').appendChild(nuevaRutina);
+
+            document.getElementById('rutinaForm').reset();
+        }
+
+        // Función para eliminar rutina
+        function eliminarRutina(elemento) {
+            elemento.parentNode.remove();
+        }
+
+        // Función para guardar rutina
+        function guardarRutina() {
+            var rutinasGuardadas = JSON.parse(localStorage.getItem('rutinas')) || [];
+            var nuevaRutina = {
+                parteCuerpo: document.getElementById('parteCuerpo').value,
+                ejercicio: document.getElementById('ejercicio').value,
+                sets: document.getElementById('sets').value,
+                repeticiones: document.getElementById('repeticiones').value
+            };
+            rutinasGuardadas.push(nuevaRutina);
+            localStorage.setItem('rutinas', JSON.stringify(rutinasGuardadas));
+            alert('Rutina guardada exitosamente');
+        }
+    </script>
+</body>
+</html>
